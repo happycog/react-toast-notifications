@@ -96,6 +96,8 @@ export class ToastController extends Component<Props, State> {
     const handleMouseEnter = autoDismiss ? this.onMouseEnter : NOOP;
     const handleMouseLeave = autoDismiss ? this.onMouseLeave : NOOP;
 
+    console.log(props);
+
     return (
       <Toast
         autoDismiss={autoDismiss}
