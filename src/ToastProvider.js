@@ -206,7 +206,7 @@ export class ToastProvider extends Component<Props, State> {
                     >
                       {transitionState => (
                         <ToastController
-                          ref={this.nodeRef}
+                          forwardedRef={this.nodeRef}
                           appearance={appearance}
                           autoDismiss={autoDismiss !== undefined ? autoDismiss : inheritedAutoDismiss}
                           autoDismissTimeout={autoDismissTimeout}

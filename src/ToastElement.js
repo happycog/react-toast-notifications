@@ -182,15 +182,16 @@ const toastStates = (placement: Placement) => ({
   exited: { transform: 'scale(0.66)', opacity: 0 },
 });
 
-const ToastElement = React.forwardRef(({
+const ToastElement = ({
   appearance,
   placement,
   transitionDuration,
   transitionState,
+  forwardedRef,
   ...props
-}: *, ref) => {
+}: *) => {
   const [height, setHeight] = useState('auto');
-  const elementRef: ElementRef<*> = ref || useRef(null);
+  const elementRef: ElementRef<*> = forwardedRef || useRef(null);
 
   useEffect(
     () => {
@@ -230,7 +231,7 @@ const ToastElement = React.forwardRef(({
       />
     </div>
   );
-});
+};
 
 // ==============================
 // DefaultToast
@@ -248,9 +249,10 @@ export type ToastProps = {
   placement: Placement,
   transitionDuration: number, // inherited from ToastProvider
   transitionState: TransitionState, // inherited from ToastProvider
+  forwardedRef: ElementRef<*>,
 };
 
-export const DefaultToast = ({
+export const DefaultToast = React.forwardRef(({
   appearance,
   autoDismiss,
   autoDismissTimeout,
@@ -263,7 +265,7 @@ export const DefaultToast = ({
   onMouseEnter,
   onMouseLeave,
   ...otherProps
-}: ToastProps) => (
+}: ToastProps, ref) => (
   <ToastElement
     appearance={appearance}
     placement={placement}
@@ -271,6 +273,7 @@ export const DefaultToast = ({
     transitionDuration={transitionDuration}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
+    forwardedRef={ref}
     {...otherProps}
   >
     <Icon
@@ -287,7 +290,7 @@ export const DefaultToast = ({
       </Button>
     ) : null}
   </ToastElement>
-);
+));
 
 DefaultToast.defaultProps = {
   onDismiss: NOOP,
