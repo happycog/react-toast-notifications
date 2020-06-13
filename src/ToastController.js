@@ -89,7 +89,7 @@ export class ToastController extends Component<Props, State> {
   };
 
   render() {
-    const { autoDismiss, autoDismissTimeout, component: Toast, ...props } = this.props;
+    const { autoDismiss, autoDismissTimeout, forwardedRef, component: Toast, ...props } = this.props;
     const { isRunning } = this.state;
 
     // NOTE: conditions here so methods can be clean
@@ -103,6 +103,7 @@ export class ToastController extends Component<Props, State> {
         isRunning={isRunning}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        ref={forwardedRef}
         {...props}
       />
     );

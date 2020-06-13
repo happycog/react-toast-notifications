@@ -81,6 +81,11 @@ export class ToastProvider extends Component<Props, State> {
 
   state = { toasts: [] };
 
+  constructor(props) {
+    super(props);
+    this.nodeRef = React.createRef();
+  }
+
   // Internal Helpers
   // ------------------------------
 
@@ -194,12 +199,14 @@ export class ToastProvider extends Component<Props, State> {
                     <Transition
                       appear
                       key={id}
+                      nodeRef={this.nodeRef}
                       mountOnEnter
                       timeout={transitionDuration}
                       unmountOnExit
                     >
                       {transitionState => (
                         <ToastController
+                          forwardedRef={this.nodeRef}
                           appearance={appearance}
                           autoDismiss={autoDismiss !== undefined ? autoDismiss : inheritedAutoDismiss}
                           autoDismissTimeout={autoDismissTimeout}
