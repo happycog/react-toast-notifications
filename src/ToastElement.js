@@ -182,15 +182,15 @@ const toastStates = (placement: Placement) => ({
   exited: { transform: 'scale(0.66)', opacity: 0 },
 });
 
-const ToastElement = ({
+const ToastElement = React.forwardRef(({
   appearance,
   placement,
   transitionDuration,
   transitionState,
   ...props
-}: *) => {
+}: *, ref) => {
   const [height, setHeight] = useState('auto');
-  const elementRef: ElementRef<*> = useRef(null);
+  const elementRef: ElementRef<*> = ref || useRef(null);
 
   useEffect(
     () => {
@@ -230,7 +230,7 @@ const ToastElement = ({
       />
     </div>
   );
-};
+});
 
 // ==============================
 // DefaultToast
