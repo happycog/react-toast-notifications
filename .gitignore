@@ -9,5 +9,5 @@ yarn-error.log*
 
 # build
 node_modules
-dist
+# dist
 examples/dist
