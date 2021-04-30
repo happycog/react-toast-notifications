@@ -9,6 +9,7 @@ export type Options = {
   appearance: AppearanceTypes,
   autoDismiss?: boolean,
   onDismiss?: Callback,
+  autoDismissTimeout?: number,
 };
 
 export type AddFn = (content: Node, options?: Options) => Id;
