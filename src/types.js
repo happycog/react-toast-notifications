@@ -9,6 +9,7 @@ export type Options = {
   appearance: AppearanceTypes,
   autoDismiss?: boolean,
   onDismiss?: Callback,
+  //adds fix for missing prop
   autoDismissTimeout?: number,
 };
 
